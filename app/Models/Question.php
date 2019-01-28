@@ -17,16 +17,8 @@ class Question extends Model
     /**
      * Get the level of the question.
      */
-    public function levels()
+    public function level()
     {
-        return $this->hasOne('App\Models\Level');
-    }
-
-    /**
-     * Get the quizz of the question.
-     */
-    public function quizzes()
-    {
-        return $this->hasOne('App\Models\Quiz');
+        return $this->belongsTo('App\Models\Level', 'levels_id');
     }
 }
