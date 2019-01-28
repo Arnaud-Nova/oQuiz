@@ -1,0 +1,19 @@
+.level-color-3 {
+    background-color: #DE4150;
+    color: #FFFFFF;
+}
+
+.level-color-2 {
+    background-color:#FFC107;
+    color: #000000;
+}
+
+.level-color-1 {
+    background-color:#28A745;
+    color: #FFFFFF;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
