@@ -12,13 +12,11 @@ class MainController extends Controller
     public function home()
     {
         $quizzes = Quiz::all();
-        $authors = AppUser::all();
 
         View::share('title', 'Acceuil');
 
         return view('home', [
             'quizzes' => $quizzes,
-            'authors' => $authors,
         ]);
     }
 }

@@ -23,7 +23,6 @@ echo view('header');
     
             <div class="row">
                 <?php
-                    $i = 1;
                     foreach ($questionsQuiz as $index => $questionQuiz) : 
                     $level = $levels->firstWhere('id', $questionQuiz->levels_id);
                     ?>
