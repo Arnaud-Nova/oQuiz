@@ -16,8 +16,16 @@ class Quiz extends Model
     /**
      * Get the question of the quiz.
      */
-    public function question()
+    public function questions()
     {
-        return $this->belongsTo('App\Models\Question', 'questions_id');
+        return $this->hasMany('App\Models\Question', 'quizzes_id');
+    }
+
+    /**
+     * Get the author of the quiz.
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\Models\AppUser', 'app_users_id');
     }
 }

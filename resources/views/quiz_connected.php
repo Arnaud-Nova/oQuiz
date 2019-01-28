@@ -1,69 +1,10 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Reset CSS -->
-        <link href="../oquiz/public/css/reset.css"  rel="stylesheet">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-        <!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-        <!-- Google fonts CSS -->
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="../oquiz/public/css/app.css" rel="stylesheet">
-
-        <title>O'Quiz</title>
-    </head>
-    <body>
-        <main class="container">
-
-            <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-
-                    <ul class="nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link d-inline text-blue" href="#">
-                            <h1 >O'Quiz</h1>
-                            </a>
-                        </li>
-                    </ul>
-    
-                    <ul class="nav nav-pills justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="fas fa-home"></i>
-                                Accueil
-                            </a>
-                        </li>
-    
-                        <li class="nav-item">
-                            <a class="nav-link text-blue" href="#">
-                                <i class="fas fa-user"></i>
-                                Mon compte
-                            </a>
-                        </li>
-    
-                        <li class="nav-item">
-                            <a class="nav-link text-blue" href="#">
-                                <i class="fas fa-sign-out-alt"></i>
-                                Déconnexion
-                            </a>
-                        </li>
-                    </ul>
-            </nav>
-        
+<?php
+echo view('header');
+?>
 
             <div class="row">
                 <h2><?= $quiz->title ?> 
-                    <span class="badge badge-pill badge-secondary">xx questions</span>
+                    <span class="badge badge-pill badge-secondary"><?= $quiz->questions->count() ?> questions</span>
                 </h2>
             </div>
 
@@ -74,46 +15,46 @@
             </div>
 
             <div class="row">
-                <p>by  <?php 
-                echo $author->firstname . ' ' . $author->lastname ?></p>
+                <p>by  <?= $quiz->author->firstname . ' ' . $quiz->author->lastname ?></p>
             </div>
             
-            <form action="" method="">
-
+            <form action="" method="POST">
                 <div class="row">
 
-                    <div class="col-sm-3 border p-0">
+                    <?php
+                    foreach ($questionsQuiz as $index => $questionQuiz) : 
+                    $level = $levels->firstWhere('id', $questionQuiz->levels_id);
+                    ?>
+                    <div class="col-sm-3 border p-0 <?php if($index % 3 !== 0): ?>offset-sm-1<?php endif ?>">
 
-                        <span class="badge badge-success float-right mt-2 mr-2">Débutant</span>
+                        <span class="badge badge-success level-color-<?= $level->id ?> float-right mt-2 mr-2"><?= $level->name ?></span>
 
                         <div class="p-3 background-grey">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
+                        <?= $questionQuiz->question ?>
                         </div>
 
                         <div class="p-3 question-answer-block">
+                            
+                            <?php 
+                                foreach ($answers[$questionQuiz->id] as $indexA => $answer) : 
+                                ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="question<?= $questionQuiz->levels_id ?>" id="answer<?= $answer->id ?>" value="option1">
+                                    <label class="form-check-label" for="answer<?= $answer->id ?>">
+                                    <?= $answer->description ?> 
+                                    </label> 
+                                </div>
 
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                                <label class="form-check-label" for="exampleRadios1">
-                                        Lorem ipsum 
-                                </label> 
-                            </div>
-
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                        Lorem ipsum 
-                                </label> 
-                             </div>
-
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2">
-                                <label class="form-check-label" for="exampleRadios3">
-                                        Lorem ipsum 
-                                </label> 
-                             </div>
+                            <?php endforeach; ?>
+                            
                         </div>
                     </div>
+                    <?php if($index % 3 === 2): ?>
+                    </div><div class="row mt-3">
+                    <?php endif; ?>
+
+                    <?php endforeach; ?>
+
 
                     <div class="col-sm-3 offset-sm-1 border p-0">
                         <span class="badge badge-warning float-right mt-2 mr-2">Confirmé</span>

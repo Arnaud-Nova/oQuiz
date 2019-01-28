@@ -16,9 +16,7 @@ echo view('header');
                     <div class="col-sm-4">
                         <h3 class="text-blue"><a href="./quiz/<?= $quiz->id ?>"><?= $quiz->title ?></a></h3>
                         <h5><?= $quiz->description ?></h5>
-                        <p>by <?php 
-                        $author = $authors->firstWhere('id', $quiz->app_users_id); 
-                        echo $author->firstname . ' ' . $author->lastname ?></p>
+                        <p>by <?= $quiz->author->firstname . ' ' . $quiz->author->lastname?></p>
                     </div>
                 <?php endforeach; ?>
                 </div>

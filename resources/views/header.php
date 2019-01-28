@@ -19,9 +19,9 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="<?= $_SERVER['BASE_URI'] . '/css/app.css' ?>" rel="stylesheet">
+        <link href="<?= route('home') . '/css/app.css' ?>" rel="stylesheet">
 
-        <title>O'Quiz</title>
+        <title><?= $title ?></title>
     </head>
     <body>
         <main class="container">
@@ -30,7 +30,7 @@
 
                 <ul class="nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link d-inline text-blue" href="<?= $_SERVER['BASE_URI'] . '/' ?>">
+                        <a class="nav-link d-inline text-blue" href="<?= route('home') ?>">
                         <h1 >O'Quiz</h1>
                         </a>
                     </li>
@@ -38,9 +38,9 @@
 
                 <ul class="nav nav-pills justify-content-end align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= $_SERVER['BASE_URI'] . '/' ?>">
+                        <a class="nav-link active" href="<?= route('home') ?>">
                             <i class="fas fa-home"></i>
-                            Accueil
+                            Acceuil
                         </a>
                     </li>
                     <li class="nav-item">
