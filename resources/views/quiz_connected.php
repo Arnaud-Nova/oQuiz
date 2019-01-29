@@ -5,6 +5,7 @@ echo view('header');
             <div class="row">
                 <h2><?= $quiz->title ?> 
                     <span class="badge badge-pill badge-secondary"><?= $quiz->questions->count() ?> questions</span>
+                    <?php if (isset($result)) : ?><span class="badge badge-pill badge-success">Résultat : <?= $result ?> bonne(s) réponse(s)</span><?php endif; ?>
                 </h2>
             </div>
 
@@ -18,7 +19,7 @@ echo view('header');
                 <p>by  <?= $quiz->author->firstname . ' ' . $quiz->author->lastname ?></p>
             </div>
             
-            <form action="" method="POST">
+            <form action="<?= route('quiz', ['id' => $quiz->id]) ?>" method="POST">
                 <div class="row">
 
                     <?php
@@ -39,8 +40,8 @@ echo view('header');
                                 foreach ($answers[$questionQuiz->id] as $indexA => $answer) : 
                                 ?>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="question<?= $questionQuiz->levels_id ?>" id="answer<?= $answer->id ?>" value="option1">
-                                    <label class="form-check-label" for="answer<?= $answer->id ?>">
+                                    <input class="form-check-input" type="radio" name="<?= $questionQuiz->id ?>" id="answer<?= $answer->id ?>" value="<?= $answer->id ?>">
+                                    <label class="form-check-label" for="question<?= $questionQuiz->id ?>">
                                     <?= $answer->description ?> 
                                     </label> 
                                 </div>
