@@ -30,3 +30,8 @@ $router->post('/signup', [
     'as' => 'signup',
     'uses' => 'UserController@signup',
 ]);
+
+$router->get('/logout', [
+    'as' => 'user_logout',
+    'uses' => 'UserController@logout',
+]);

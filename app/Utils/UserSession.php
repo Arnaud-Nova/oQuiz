@@ -2,7 +2,7 @@
 
 namespace App\Utils;
 
-use App\User;
+use App\Models\AppUser;
 
 /**
  * On crée une classe abstraite qui manipule $_SESSION
@@ -22,9 +22,9 @@ abstract class UserSession
     /**
      * Connecter le user et stocker ses infos en mémoire
      * 
-     * @param User $userModel modèle à stocker
+     * @param AppUser $userModel modèle à stocker
      */
-    public static function connect(User $userModel)
+    public static function connect(AppUser $userModel)
     {
         // On masque le password de la Session
         $userModel->password = null;
@@ -57,7 +57,7 @@ abstract class UserSession
      * Récupère l'objet User (Model) stocké
      * pour pouvoir l'utiliser
      * 
-     * @return User|null
+     * @return AppUser|null
      */
     public static function getUser()
     {

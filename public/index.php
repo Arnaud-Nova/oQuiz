@@ -13,6 +13,8 @@
 
 $app = require __DIR__.'/../bootstrap/app.php';
 
+session_start();
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
