@@ -74,10 +74,10 @@ dump($_SESSION);
                                             <h5 class="modal-title" id="exampleModalCenterTitle">Inscrivez vous</h5>
                                         </div>
                                         <div class="modal-footer">
-                                            <form id="signup" class="container d-flex flex-column" method="post" action="<?= route('signup') ?>">
+                                            <form id="signup" class="container d-flex flex-column" method="POST" action="<?= route('signup') ?>">
                                                 <div class="row">
                                                     <label class="col-7" for="email">Indiquez votre email</label>
-                                                    <input class="col-4" id=email type="email" placeholder="Adresse email">
+                                                    <input class="col-4" id="email" type="email" name="email" placeholder="Adresse email">
                                                 </div>
                                                 
                                                 <div class="row mt-1">

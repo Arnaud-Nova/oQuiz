@@ -65,3 +65,5 @@ echo view('header');
         </main>
     </body>
 </html>
+<?php
+echo view('footer');

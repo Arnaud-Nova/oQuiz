@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\View;
 
 
 
+
 class UserController extends Controller
 {
     public function signin(Request $request)
@@ -56,6 +57,41 @@ class UserController extends Controller
         $password = $request->input('password');
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
+        $errors = [];
+        // dump($request);
+        if (empty($email)) {
+            $errors[] = 'L\'adresse e-mail est requise.';
+        } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            $errors[] = 'L\'adresse e-mail n\'est pas une adresse correcte.';
+        }
+        if (empty($password)) {
+            $errors[] = 'Le mot de passe est requis.';
+        }
+        if (empty($firstname)) {
+            $errors[] = 'Le prénom est requis.'; 
+        }
+        if (empty($lastname)) {
+            $errors[] = 'Le nom est requis.'; 
+        }
+        // dump($errors);
+        if (empty($errors)) {
+            $userExist = AppUser::where('email', $email)->first();
+            dump($userExist);
+            if ($userExist) {
+                $errors[] = 'Cet email est déjà utilisé';
+            } else {
+                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+                $newUser = new AppUser();
+                $newUser->email = $email;
+                $newUser->firstname = $firstname;
+                $newUser->lastname = $lastname;
+                $newUser->password = $passwordHash;
+                $newUser->save();
+
+                return redirect()->route('signup-confirm');
+            }
+        }
     }
 
     public function logout()

@@ -35,3 +35,8 @@ $router->get('/logout', [
     'as' => 'user_logout',
     'uses' => 'UserController@logout',
 ]);
+
+$router->get('/signup-confim', [
+    'as' => 'signup-confirm',
+    'uses' => 'MainController@signupConfirm',
+]);
