@@ -107,6 +107,12 @@ dump($_SESSION);
                                     </div>
                                 </div>
                             <li class="nav-item">
+                                <a class="nav-link" href="<?= route('account') ?>">
+                                <i class="fas fa-user"></i>
+                                    Mon compte
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="<?= route('user_logout') ?>">
                                 <i class="fas fa-sign-out-alt"></i>
                                     Déconnexion

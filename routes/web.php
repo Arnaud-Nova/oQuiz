@@ -40,3 +40,8 @@ $router->get('/signup-confim', [
     'as' => 'signup-confirm',
     'uses' => 'MainController@signupConfirm',
 ]);
+
+$router->get('/account', [
+    'as' => 'account',
+    'uses' => 'UserController@profile',
+]);

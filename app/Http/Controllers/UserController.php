@@ -99,4 +99,11 @@ class UserController extends Controller
         UserSession::disconnect();
         return redirect()->route('home');
     }
+
+    public function profile()
+    {
+        View::share('title', 'Mon compte');
+
+        return view('account');
+    }
 }
