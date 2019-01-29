@@ -20,3 +20,13 @@ $router->get('/quiz/{id}', [
     'as' => 'quiz',
     'uses' => 'QuizController@quiz',
 ]);
+
+$router->post('/signin', [
+    'as' => 'signin',
+    'uses' => 'UserController@signin',
+]);
+
+$router->post('/signup', [
+    'as' => 'signup',
+    'uses' => 'UserController@signup',
+]);

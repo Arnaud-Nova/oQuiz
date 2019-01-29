@@ -40,7 +40,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="<?= route('home') ?>">
                             <i class="fas fa-home"></i>
-                            Acceuil
+                            Accueil
                         </a>
                     </li>
                     <li class="nav-item">
@@ -59,7 +59,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="container d-flex flex-column" method="post" action="">
+                                        <form class="container d-flex flex-column" method="post" action="<?= route('signin') ?>">
                                             <div class="row mt-1"><label class="col-7" for="">Email d'inscription</label>
                                             <input class="col-4" type="email" placeholder="Adresse email"></div>
                                             
@@ -72,7 +72,7 @@
                                         <h5 class="modal-title" id="exampleModalCenterTitle">Inscrivez vous</h5>
                                     </div>
                                     <div class="modal-footer">
-                                        <form id="signup" class="container d-flex flex-column" method="post" action="">
+                                        <form id="signup" class="container d-flex flex-column" method="post" action="<?= route('signup') ?>">
                                             <div class="row">
                                                 <label class="col-7" for="email">Indiquez votre email</label>
                                                 <input class="col-4" id=email type="email" placeholder="Adresse email">
