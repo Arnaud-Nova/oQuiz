@@ -8,6 +8,7 @@ use App\Models\Question;
 use App\Models\Answer;
 use App\Models\Level;
 use Illuminate\Support\Facades\View;
+use App\Utils\UserSession;
 
 class QuizController extends Controller
 {
@@ -27,13 +28,24 @@ class QuizController extends Controller
             // on mélange les questions (car la 1ere est tjrs la bonne réponse)
             $answers[$question->id] = $answersCollection->shuffle();
         }
+        $userIsConnected = UserSession::isConnected();
 
-        return view('quiz_view', [
-            'quiz' => $quiz,
-            'questionsQuiz' => $questionsQuiz,
-            'answers' => $answers,
-            'levels' => $levels,
-        ]);
+        if ($userIsConnected) {
+            return view('quiz_connected', [
+                'quiz' => $quiz,
+                'questionsQuiz' => $questionsQuiz,
+                'answers' => $answers,
+                'levels' => $levels,
+            ]);
+        } else {
+            return view('quiz_view', [
+                'quiz' => $quiz,
+                'questionsQuiz' => $questionsQuiz,
+                'answers' => $answers,
+                'levels' => $levels,
+            ]);
+        }
+        
     }
 }
 
