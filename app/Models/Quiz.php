@@ -28,4 +28,12 @@ class Quiz extends Model
     {
         return $this->belongsTo('App\Models\AppUser', 'app_users_id');
     }
+
+    /**
+     * Get the tags for the quiz.
+     */ 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'quizzes_has_tags', 'quizzes_id', 'tags_id');
+    }
 }

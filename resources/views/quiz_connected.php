@@ -13,8 +13,14 @@ echo view('header');
                 <h4> 
                 <?= $quiz->description ?>
                 </h4>
-            </div>
 
+            </div>
+            
+            <div class="row">
+            <?php foreach ($tags as $tag) : ?>
+                <span class="badge badge-info float-right mt-2 mr-2"><?= $tag->name ?></span>
+            <?php endforeach; ?>
+            </div>
             <div class="row">
                 <p>by  <?= $quiz->author->firstname . ' ' . $quiz->author->lastname ?></p>
             </div>
@@ -32,12 +38,11 @@ echo view('header');
 
                         <div class="p-3 background-grey
                         <?php
-                            if (isset($quizzAnswersResult) && isset($quizzAnswersResult[$questionQuiz->id]['class'])) {
-                                echo $quizzAnswersResult[$questionQuiz->id]['class'];
-                            } elseif (isset($quizzAnswersResult)) {
+                            if (isset($quizAnswersResult) && isset($quizAnswersResult[$questionQuiz->id]['class'])) {
+                                echo $quizAnswersResult[$questionQuiz->id]['class'];
+                            } elseif (isset($quizAnswersResult)) {
                                 echo " alert-warning";
                             }
-                        
                         ?>">
                         <?= $questionQuiz->question ?>
                         </div>

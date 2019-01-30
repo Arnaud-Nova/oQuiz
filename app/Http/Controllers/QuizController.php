@@ -15,10 +15,12 @@ class QuizController extends Controller
 {
     public function quiz(Request $request, $id)
     {   
-        $quizzAnswersResult = [];
+        $quizAnswersResult = [];
         $quiz = Quiz::find($id);
         $levels = Level::all();
-    
+
+        $tags = $quiz->tags;
+
         View::share('quiz', $quiz);
         View::share('title', $quiz->title);
         $questionsQuiz = $quiz->questions;
@@ -40,6 +42,7 @@ class QuizController extends Controller
                     'questionsQuiz' => $questionsQuiz,
                     'answers' => $answers,
                     'levels' => $levels,
+                    'tags' => $tags,
                 ]);
             } else {
                 return view('quiz_view', [
@@ -47,6 +50,7 @@ class QuizController extends Controller
                     'questionsQuiz' => $questionsQuiz,
                     'answers' => $answers,
                     'levels' => $levels,
+                    'tags' => $tags,
                 ]);
             }
         } elseif ($request->method() == 'POST') {
@@ -59,13 +63,13 @@ class QuizController extends Controller
                 if ($question->answers_id == $answerId) {
                     $result ++;
                     $class = ' alert-success';
-                    $quizzAnswersResult[$questionId] = [
+                    $quizAnswersResult[$questionId] = [
                             'answer' => $answerId,
                             'class' => $class,
                     ];
                 } else {
                     $class = ' alert-warning';
-                    $quizzAnswersResult[$questionId] = [
+                    $quizAnswersResult[$questionId] = [
                             'answer' => $answerId,
                             'class' => $class,
                     ];
@@ -77,7 +81,8 @@ class QuizController extends Controller
                 'answers' => $answers,
                 'levels' => $levels,
                 'result' => $result,
-                'quizzAnswersResult' => $quizzAnswersResult,
+                'quizAnswersResult' => $quizAnswersResult,
+                'tags' => $tags,
                 ]);
         }
     }

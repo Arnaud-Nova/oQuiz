@@ -16,7 +16,11 @@ echo view('header');
                 <?= $quiz->description ?>
                 </h4>
             </div>
-
+            <div class="row">
+            <?php foreach ($tags as $tag) : ?>
+                <span class="badge badge-info float-right mt-2 mr-2"><?= $tag->name ?></span>
+            <?php endforeach; ?>
+            </div>
             <div class="row">
                 <p>by <?= $quiz->author->firstname . ' ' . $quiz->author->lastname ?></p>
             </div>
