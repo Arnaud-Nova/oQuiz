@@ -15,6 +15,7 @@ class QuizController extends Controller
 {
     public function quiz(Request $request, $id)
     {   
+        $quizzAnswersResult = [];
         $quiz = Quiz::find($id);
         $levels = Level::all();
     
@@ -52,9 +53,22 @@ class QuizController extends Controller
             $result = 0;
             $quizAnswers = $request->input();
             foreach ($quizAnswers as $questionId => $answerId) {
+                // $inputNameExplode = explode('_', $inputName);
+                // $questionId =  $inputNameExplode[0];
                 $question = Question::find($questionId);
                 if ($question->answers_id == $answerId) {
                     $result ++;
+                    $class = ' alert-success';
+                    $quizzAnswersResult[$questionId] = [
+                            'answer' => $answerId,
+                            'class' => $class,
+                    ];
+                } else {
+                    $class = ' alert-warning';
+                    $quizzAnswersResult[$questionId] = [
+                            'answer' => $answerId,
+                            'class' => $class,
+                    ];
                 }
             }
             return view('quiz_connected', [
@@ -63,11 +77,9 @@ class QuizController extends Controller
                 'answers' => $answers,
                 'levels' => $levels,
                 'result' => $result,
+                'quizzAnswersResult' => $quizzAnswersResult,
                 ]);
-
-            
         }
-        
     }
 }
 

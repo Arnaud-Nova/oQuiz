@@ -1,6 +1,4 @@
-<?php
-dump($_SESSION);
-?><!doctype html>
+<!doctype html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->

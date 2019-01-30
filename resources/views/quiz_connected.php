@@ -30,7 +30,15 @@ echo view('header');
 
                         <span class="badge badge-success level-color-<?= $level->id ?> float-right mt-2 mr-2"><?= $level->name ?></span>
 
-                        <div class="p-3 background-grey">
+                        <div class="p-3 background-grey
+                        <?php
+                            if (isset($quizzAnswersResult) && isset($quizzAnswersResult[$questionQuiz->id]['class'])) {
+                                echo $quizzAnswersResult[$questionQuiz->id]['class'];
+                            } elseif (isset($quizzAnswersResult)) {
+                                echo " alert-warning";
+                            }
+                        
+                        ?>">
                         <?= $questionQuiz->question ?>
                         </div>
 
@@ -40,8 +48,14 @@ echo view('header');
                                 foreach ($answers[$questionQuiz->id] as $indexA => $answer) : 
                                 ?>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="<?= $questionQuiz->id ?>" id="answer<?= $answer->id ?>" value="<?= $answer->id ?>">
-                                    <label class="form-check-label" for="question<?= $questionQuiz->id ?>">
+                                    <input <?php
+                            if (isset($quizzAnswersResult) && isset($quizzAnswersResult[$questionQuiz->id]['answer'])) {
+                                if ($quizzAnswersResult[$questionQuiz->id]['answer'] == $answer->id)
+                                echo 'checked ';
+                            }
+                        
+                        ?>class="form-check-input" type="radio" name="<?= $questionQuiz->id?>" id="answer<?= $answer->id ?>" value="<?= $answer->id ?>">
+                                    <label class="form-check-label" for="answer<?= $answer->id ?>">
                                     <?= $answer->description ?> 
                                     </label> 
                                 </div>
