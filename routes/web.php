@@ -50,3 +50,8 @@ $router->post('/quiz/{id}', [
     'as' => 'quiz',
     'uses' => 'QuizController@quiz',
 ]);
+
+$router->get('/tag', [
+    'as' => 'tag',
+    'uses' => 'TagController@tags',
+]);

@@ -10,7 +10,9 @@ echo view('header');
                 
                 </p>
             </div>
-
+            <div class="row">
+                <a href="<?= route('tag') ?>">Consulter les différents sujets de quiz</a>
+            </div>
             <div class="row">
                 <?php foreach ($quizzes as $quiz) : ?>
                     <div class="col-sm-4">
