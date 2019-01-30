@@ -55,3 +55,8 @@ $router->get('/tag', [
     'as' => 'tag',
     'uses' => 'TagController@tags',
 ]);
+
+$router->get('/quiz/tag/{id}', [
+    'as' => 'quiz-by-tag',
+    'uses' => 'QuizController@listByTag',
+]);

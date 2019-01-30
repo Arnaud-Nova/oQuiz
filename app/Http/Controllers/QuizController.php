@@ -10,6 +10,7 @@ use App\Models\Level;
 use Illuminate\Support\Facades\View;
 use App\Utils\UserSession;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class QuizController extends Controller
 {
@@ -85,6 +86,21 @@ class QuizController extends Controller
                 'tags' => $tags,
                 ]);
         }
+    
+    }
+
+    public function listByTag($id)
+    {
+        $tag = Tag::find($id);
+        $quizzes = $tag->quizzes;
+        $title = 'Sujet - ' . $tag->name;
+        View::share('title', $title);
+
+
+        return view('quiz_by_tag', [
+            'quizzes' => $quizzes,
+            'tag' => $tag,
+        ]);
     }
 }
 
